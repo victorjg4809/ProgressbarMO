@@ -60,14 +60,14 @@ body {
   background: linear-gradient(
     120deg,
     transparent,
-    rgba(255,255,255,0.3),
+    rgba(255,255,255,0.4),
     transparent
   );
   transform: skewX(-20deg);
 }
 
 .segment.active.shine::after {
-  animation: shine 2.5s infinite;
+  animation: shine 2.0s infinite;
 }
 
 @keyframes shine {
@@ -122,8 +122,10 @@ fetch(SHEET_URL)
     setTimeout(() => {
       segment.classList.add("active");
       segment.classList.add("fill");
-      segment.classList.add("shine");
-    }, i * 180);
+      setTimeout(() => {
+  segment.classList.add("shine");
+}, i * 200);
+    }, i * 150);
   } else {
     setTimeout(() => {
       segment.classList.add("fill");
