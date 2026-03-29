@@ -85,22 +85,22 @@ fetch(SHEET_URL)
         const segment = document.createElement("div");
         segment.className = "segment";
 
-       bar.appendChild(segment);
+         bar.appendChild(segment);
 
-      const val = parseInt(value);
+        const val = parseInt(value);
 
-      if (i < val) {
-        setTimeout(() => {
-          segment.classList.add("active");
-          segment.classList.add("fill");
-        }, i * 150);
-      } else {
-        setTimeout(() => {
-          segment.classList.add("fill");
-        }, i * 100);
+        if (i < val) {
+          setTimeout(() => {
+            segment.classList.add("active");
+            segment.classList.add("fill");
+          }, i * 150);
+        } else {
+          setTimeout(() => {
+            segment.classList.add("fill");
+          }, i * 100);
+        }
       }
-    }
-
+  
       row.appendChild(nameEl);
       row.appendChild(bar);
       container.appendChild(row);
