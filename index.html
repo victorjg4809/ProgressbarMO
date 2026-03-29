@@ -44,10 +44,40 @@ body {
   background: #f3d7bb;
   border-radius: 30px;
   transition: 0.3s;
+  position: relative;  
+  overflow: hidden;
 }
 
 .segment.active {
   background: #ff5a1f;
+}
+  .segment.active::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.6),
+    transparent
+  );
+  transform: skewX(-20deg);
+}
+
+.segment.active.shine::after {
+  animation: shine 1.5s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 150%;
+  }
 }
 </style>
 
@@ -93,7 +123,10 @@ fetch(SHEET_URL)
     setTimeout(() => {
       segment.classList.add("active");
       segment.classList.add("fill");
-    }, i * 210);
+      setTimeout(() => {
+  segment.classList.add("shine");
+}, i * 200);
+    }, i * 180);
   } else {
     setTimeout(() => {
       segment.classList.add("fill");
