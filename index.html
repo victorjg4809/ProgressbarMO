@@ -9,8 +9,7 @@ body {
   font-family: sans-serif;
   background: transparent;
 }
-
-/* CONTENEDOR PRINCIPAL */
+  
 .container {
   padding: 20px;
   width: 100%;
@@ -18,7 +17,6 @@ body {
   margin: auto;
 }
 
-/* CADA FILA */
 .row {
   margin: 25px 0;
   display: flex;
@@ -26,7 +24,6 @@ body {
   gap: 20px;
 }
 
-/* NOMBRES */
 .name {
   width: 120px;
   font-size: 20px;
@@ -34,16 +31,14 @@ body {
   color: #ff5a1f;
 }
 
-/* BARRA */
 .bar {
   display: flex;
   gap: 8px;
-  flex: 1; /* ocupa todo el espacio disponible */
+  flex: 1; 
 }
 
-/* SEGMENTOS */
 .segment {
-  flex: 1; /* todos se reparten el espacio */
+  flex: 1; 
   height: 30px;
   background: #f3d7bb;
   border-radius: 30px;
@@ -63,8 +58,6 @@ body {
 <script>
 const MAX = 6;
 const container = document.getElementById("widget");
-
-// 🔗 PEGA AQUÍ TU URL DE GOOGLE SHEETS (CSV)
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRBPNPGWoHFyEu5pj6-bRARYDhtCgQNv4iDhVWAANZDLQNKgGkFacd4xvBz-qGUbS7kLbAC-w56aM5x/pubhtml";
 
 function loadData() {
@@ -108,10 +101,7 @@ function loadData() {
     });
 }
 
-// Cargar datos al inicio
 loadData();
-
-// 🔄 Auto-actualización cada 30 segundos
 setInterval(loadData, 30000);
 </script>
 
