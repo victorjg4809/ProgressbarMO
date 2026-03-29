@@ -78,6 +78,45 @@ body {
     left: 150%;
   }
 }
+  .row.completed {
+  animation: pop 0.4s ease;
+}
+
+/* efecto glow en segmentos */
+.row.completed .segment.active {
+  box-shadow: 0 0 10px rgba(255, 90, 31, 0.7);
+}
+
+/* pequeño pulso continuo */
+.row.completed .segment.active {
+  animation: pulse 1.5s infinite;
+}
+
+/* POP inicial */
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* PULSO */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 90, 31, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255, 90, 31, 1);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(255, 90, 31, 0.5);
+  }
+}
 </style>
 
 </head>
@@ -102,6 +141,11 @@ fetch(SHEET_URL)
 
       const row = document.createElement("div");
       row.className = "row";
+      const val = parseInt(value);
+
+if (val === MAX) {
+  row.classList.add("completed");
+}
 
       const nameEl = document.createElement("span");
       nameEl.className = "name";
