@@ -43,15 +43,9 @@ body {
   height: 30px;
   background: #f3d7bb;
   border-radius: 30px;
-  opacity: 0;
-  transform: scaleX(0);
-  transform-origin: left;
+  transition: 0.3s;
 }
-.segment.fill {
-  opacity: 1;
-  transform: scaleX(1);
-  transition: transform 0.4s ease, opacity 0.2s ease;
-}
+
 .segment.active {
   background: #ff5a1f;
 }
@@ -88,27 +82,24 @@ fetch(SHEET_URL)
       bar.className = "bar";
 
       for (let i = 0; i < MAX; i++) {
-      const segment = document.createElement("div");
-      segment.className = "segment";
+        const segment = document.createElement("div");
+        segment.className = "segment";
 
-      bar.appendChild(segment);
+       bar.appendChild(segment);
 
-      if (i < value) {
-    // animación con delay progresivo
+      const val = parseInt(value);
+
+      if (i < val) {
         setTimeout(() => {
           segment.classList.add("active");
           segment.classList.add("fill");
-      }, i * 150); // 👈 velocidad de animación
-    } else {
-    // los vacíos también aparecen suavemente
-    setTimeout(() => {
-      segment.classList.add("fill");
-    }, i * 100);
-  }
-}
-
-        bar.appendChild(segment);
+        }, i * 150);
+      } else {
+        setTimeout(() => {
+          segment.classList.add("fill");
+        }, i * 100);
       }
+    }
 
       row.appendChild(nameEl);
       row.appendChild(bar);
