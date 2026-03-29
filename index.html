@@ -60,46 +60,42 @@ const MAX = 6;
 const container = document.getElementById("widget");
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRBPNPGWoHFyEu5pj6-bRARYDhtCgQNv4iDhVWAANZDLQNKgGkFacd4xvBz-qGUbS7kLbAC-w56aM5x/pubhtml";
 
-function loadData() {
-  container.innerHTML = "";
+fetch(SHEET_URL)
+  .then(res => res.text())
+  .then(csv => {
+    const rows = csv.split("\n").slice(1); // quitar encabezado
 
-  fetch(SHEET_URL)
-    .then(res => res.text())
-    .then(csv => {
-      const rows = csv.split("\n").slice(1);
+    rows.forEach(line => {
+      if (!line.trim()) return;
 
-      rows.forEach(line => {
-        if (!line.trim()) return;
+      const [name, value] = line.split(",");
 
-        const [name, value] = line.split(",");
+      const row = document.createElement("div");
+      row.className = "row";
 
-        const row = document.createElement("div");
-        row.className = "row";
+      const nameEl = document.createElement("span");
+      nameEl.className = "name";
+      nameEl.textContent = name;
 
-        const nameEl = document.createElement("span");
-        nameEl.className = "name";
-        nameEl.textContent = name;
+      const bar = document.createElement("div");
+      bar.className = "bar";
 
-        const bar = document.createElement("div");
-        bar.className = "bar";
+      for (let i = 0; i < MAX; i++) {
+        const segment = document.createElement("div");
+        segment.className = "segment";
 
-        for (let i = 0; i < MAX; i++) {
-          const segment = document.createElement("div");
-          segment.className = "segment";
-
-          if (i < parseInt(value)) {
-            segment.classList.add("active");
-          }
-
-          bar.appendChild(segment);
+        if (i < parseInt(value)) {
+          segment.classList.add("active");
         }
 
-        row.appendChild(nameEl);
-        row.appendChild(bar);
-        container.appendChild(row);
-      });
+        bar.appendChild(segment);
+      }
+
+      row.appendChild(nameEl);
+      row.appendChild(bar);
+      container.appendChild(row);
     });
-  
+  });
 </script>
 
 </body>
